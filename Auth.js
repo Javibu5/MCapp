@@ -2,7 +2,7 @@ import * as React from 'react';
 import AsyncStorage from 'react-native';
 import SignInScreen from './screens/SignInScreen';
 import HomeScreen from './screens/HomeScreen';
-
+import SplashScreen from './screens/SplashScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 
 const AuthContext = React.createContext();
@@ -87,12 +87,25 @@ export default function Auth({ navigation }) {
   return (
     <AuthContext.Provider value={authContext}>
       <Stack.Navigator>
-        {state.userToken == null ? (
-          <Stack.Screen name="SignIn" component={SignInScreen} />
+        {state.isLoading ? (
+          // We haven't finished checking for the token yet
+          <Stack.Screen name="Splash" component={SplashScreen} />
+        ) : state.userToken == null ? (
+          // No token found, user isn't signed in
+          <Stack.Screen
+            name="SignIn"
+            component={SignInScreen}
+            options={{
+              title: 'Sign in',
+          // When logging out, a pop animation feels intuitive
+              animationTypeForReplace: state.isSignout ? 'pop' : 'push',
+            }}
+          />
         ) : (
+          // User is signed in
           <Stack.Screen name="Home" component={HomeScreen} />
         )}
       </Stack.Navigator>
-    </AuthContext.Provider>
+  </AuthContext.Provider>
   );
 }

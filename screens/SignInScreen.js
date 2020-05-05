@@ -1,10 +1,10 @@
 import React from 'react'
+import { Button, TextInput, View } from 'react-native';
 
 export default function SignInScreen() {
+
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
-  
-    const { signIn } = React.useContext(AuthContext);
   
     return (
       <View>
