@@ -6,8 +6,10 @@ import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import BottomTabNavigator from './navigation/BottomTabNavigator';
+
 import useLinking from './navigation/useLinking';
+
+import Auth from './Auth';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +18,7 @@ export default function App(props) {
   const [initialNavigationState, setInitialNavigationState] = React.useState();
   const containerRef = React.useRef();
   const { getInitialState } = useLinking(containerRef);
+  
 
   // Load any resources or data that we need prior to rendering the app
   React.useEffect(() => {
@@ -43,16 +46,18 @@ export default function App(props) {
     loadResourcesAndDataAsync();
   }, []);
 
-  if (!isLoadingComplete && !props.skipLoadingScreen) {
+
+  if (!isLoadingComplete && !props.skipLoadingScreen ) {
     return null;
   } else {
     return (
       <View style={styles.container}>
         {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
         <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
-          <Stack.Navigator>
-            <Stack.Screen name="Root" component={BottomTabNavigator} />
-          </Stack.Navigator>
+          
+            <Auth>
+            </Auth>         
+          
         </NavigationContainer>
       </View>
     );
