@@ -7,7 +7,7 @@ import * as React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import SignInScreen from './screens/SignInScreen'
 import BottomTabNavigator from './navigation/BottomTabNavigator';
-import LinkingConfiguration from './navigation/LinkingConfiguration';
+import LinkingConfiguration from './navigation/useLinking';
 
 const Stack = createStackNavigator();
 const AuthContext = React.createContext();  

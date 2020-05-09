@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, TextInput, View } from 'react-native';
-import signIn from '../Auth';
+import signIn from '../App';
 
 export default function SignInScreen() {
 
