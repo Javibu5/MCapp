@@ -1,18 +1,14 @@
-import { Ionicons } from '@expo/vector-icons';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { SplashScreen } from 'expo';
-import * as Font from 'expo-font';
 import * as React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import SignInScreen from './screens/SignInScreen'
 import BottomTabNavigator from './navigation/BottomTabNavigator';
-import LinkingConfiguration from './navigation/useLinking';
 
 const Stack = createStackNavigator();
-const AuthContext = React.createContext();  
+const AuthContext = React.createContext();
 
-export default function App({ navigation }) {
+export default function App() {
 
     const [state, dispatch] = React.useReducer(
       (prevState, action) => {
