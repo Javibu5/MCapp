@@ -2,7 +2,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
-import { Button, TextInput, View, Alert } from 'react-native';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import AuthConsumer, { AuthProvider } from './components/AuthProvider';
 import { SignInScreen } from './screens/SignInScreen';
