@@ -29,7 +29,9 @@ export default function LinksScreen() {
   );
 }
 
-function OptionButton({ icon, label, onPress, isLastOption }) {
+function OptionButton({
+  icon, label, onPress, isLastOption,
+}) {
   return (
     <RectButton style={[styles.option, isLastOption && styles.lastOption]} onPress={onPress}>
       <View style={{ flexDirection: 'row' }}>
