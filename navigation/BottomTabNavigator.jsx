@@ -37,7 +37,9 @@ export default function BottomTabNavigator({ navigation, route }) {
 }
 
 function getHeaderTitle(route) {
-  const routeName = route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
+  const routeName = (route.state
+    && route.state.routes[route.state.index] && route.state.routes[route.state.index].name)
+    || INITIAL_ROUTE_NAME;
 
   switch (routeName) {
     case 'Home':

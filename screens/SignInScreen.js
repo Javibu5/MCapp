@@ -1,26 +1,27 @@
-import React from 'react'
-import { Button, TextInput, View } from 'react-native';
-import signIn from '../App';
+import React from 'react';
+import { TextInput, View, Button } from 'react-native';
+import AuthConsumer from '../components/AuthProvider';
 
-export default function SignInScreen() {
+export const SignInScreen = () => {
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
 
-    const [username, setUsername] = React.useState('');
-    const [password, setPassword] = React.useState('');
-  
-    return (
-      <View>
-        <TextInput
-          placeholder="Username"
-          value={username}
-          onChangeText={setUsername}
-        />
-        <TextInput
-          placeholder="Password"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-        />
-        <Button title="Sign in" onPress={() => signIn({ username, password })} />
-      </View>
-    );
-  }
+  return (
+    <View>
+      <TextInput
+        placeholder="Username"
+        value={username}
+        onChangeText={setUsername}
+      />
+      <TextInput
+        placeholder="Password"
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+      />
+      <AuthConsumer>
+        {ctx => <Button title="Sign in" onPress={() => ctx.signIn({ username, password })} />}
+      </AuthConsumer>
+    </View>
+  );
+};
