@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from "axios";
 
 const { Provider, Consumer } = React.createContext();
 
@@ -39,8 +40,21 @@ export const AuthProvider = ({ children }) => {
           // We will also need to handle errors if sign in failed
           // After getting token, we need to persist the token using `AsyncStorage`
           // In the example, we'll use a dummy token
-  
-          dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
+
+          axios.post('https://127.0.0.1:8000/authentication_token', {
+            username: data.username,
+            password: data.password
+          })
+          .then(function (response) {
+            console.log(response);
+            dispatch({ type: 'SIGN_IN', token: response });
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+
+
         },
         signOut: () => dispatch({ type: 'SIGN_OUT' }),
         signUp: async (data) => {
