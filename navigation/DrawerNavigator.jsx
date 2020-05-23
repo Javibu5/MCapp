@@ -1,22 +1,23 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import * as React from 'react';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 
-const BottomTab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
 
-export default function BottomTabNavigator({ navigation, route }) {
+export default function DrawerNavigator({ navigation, route }) {
   // Set the header title on the parent stack navigator depending on the
   // currently active tab. Learn more in the documentation:
   // https://reactnavigation.org/docs/en/screen-options-resolution.html
   navigation.setOptions({ headerTitle: getHeaderTitle(route) });
 
   return (
-    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
-      <BottomTab.Screen
+    <Drawer.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
+      <Drawer.Screen
         name="Home"
         component={HomeScreen}
         options={{
@@ -24,7 +25,7 @@ export default function BottomTabNavigator({ navigation, route }) {
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
         }}
       />
-      <BottomTab.Screen
+      <Drawer.Screen
         name="Links"
         component={LinksScreen}
         options={{
@@ -32,7 +33,28 @@ export default function BottomTabNavigator({ navigation, route }) {
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
         }}
       />
-    </BottomTab.Navigator>
+      <Drawer.Screen
+        name="Camera"
+        component={CameraScreen}
+        options={{
+          title: 'Take a photo',
+        }}
+      />
+      <Drawer.Screen
+        name="Movement"
+        component={MovementScreen}
+        options={{
+          title: 'compass',
+        }}
+      />
+      <Drawer.Screen
+        name="Wifi Listenen"
+        component={WifiScreen}
+        options={{
+          title: 'Wifi',
+        }}
+      />
+    </Drawer.Navigator>
   );
 }
 
